@@ -10,18 +10,23 @@
 </head>
 
 <body>
-  <ul id="slides" class="slides">
-    <li class="slide active">Slide 1</li>
-    <li class="slide">Slide 2</li>
-    <li class="slide">Slide 3</li>
-    <li class="slide">Slide 4</li>
-    <li class="slide">Slide 5</li>
+  <div id="carousel" class="carousel">
+    <div id="slides" class="slides">
+      <div class="slide active">Slide 1</div>
+      <div class="slide">Slide 2</div>
+      <div class="slide">Slide 3</div>
+      <div class="slide">Slide 4</div>
+      <div class="slide">Slide 5</div>
+    </div>
 
-  </ul>
+    <div id="controls-container" class="controls">
+      <span id="pause-btn" class="control">Pause</span>
+      <span id="prev-btn" class="control">Prev</span>
+      <span id="next-btn" class="control">Next</span>
+    </div>
+  </div>
 
-  <button class="controls" id="pause">Pause</button>
-  <button class="controls" id="prev">Prev</button>
-  <button class="controls" id="next">Next</button>
+
   <script src="/assets/js/main.js"></script>
 </body>
 

@@ -1,61 +1,53 @@
-const slide = document.querySelectorAll('.slide');
-const pauseButton = document.querySelector('#pause');
-const prevButton = document.querySelector('#prev');
-const nextButton = document.querySelector('#next');
+const slides = document.querySelectorAll('.slide');
+const pauseBtn = document.querySelector('#pause-btn');
+const prevBtn = document.querySelector('#prev-btn');
+const nextBtn = document.querySelector('#next-btn');
 
+const slidesCount = slides.length;
 
 let currentSlide = 0;
 let isPlaying = true;
 let timerID = null;
-let interval = 1000
+let interval = 2000;
 
 function gotoNth(n) {
-  slide[currentSlide].className = 'slide';
-  currentSlide = (n + 5) % 5;
-  slide[currentSlide].className = 'slide active';
+  slides[currentSlide].classList.toggle('active');
+  currentSlide = (n + slidesCount) % slidesCount;
+  slides[currentSlide].classList.toggle('active');
 }
 
-function prevSlide() {
-  gotoNth(currentSlide - 1)
-}
+const gotoPrev = () => gotoNth(currentSlide - 1);
 
-function nextSlide() {
-  gotoNth(currentSlide + 1)
-}
+const gotoNext = () => gotoNth(currentSlide + 1);
 
-function nextAndPause() {
-  nextSlide();
-  onlyPause();
-}
-function prevAndPause() {
-  prevSlide();
-  onlyPause();
-}
-
-function onlyPause() {
+function pause() {
   if (isPlaying) {
     clearInterval(timerID);
-    pauseButton.innerHTML = 'Play';
+    pauseBtn.innerHTML = 'Play';
     isPlaying = false;
   }
 }
 
-function onlyPlay() {
-  timerID = setInterval(nextSlide, interval);
-  pauseButton.innerHTML = 'Pause';
+function play() {
+  timerID = setInterval(gotoNext, interval);
+  pauseBtn.innerHTML = 'Pause';
   isPlaying = true;
 }
 
-function pauseSlideshow() {
-  if (isPlaying) {
-   onlyPause();
-  } else {
-    onlyPlay();
-  }
+const pausePlay = () => isPlaying ? pause() : play();
+
+function prev() {
+  gotoPrev();
+  pause();
+}
+function next() {
+  gotoNext();
+  pause();
 }
 
-pauseButton.addEventListener('click', pauseSlideshow);
-prevButton.addEventListener('click', prevAndPause);
-nextButton.addEventListener('click', nextAndPause);
+
+pauseBtn.addEventListener('click', pausePlay);
+prevBtn.addEventListener('click', prev);
+nextBtn.addEventListener('click', next);
 
 timerID = setInterval(gotoNext, interval);
