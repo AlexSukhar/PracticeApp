@@ -1,5 +1,5 @@
 const slides = document.querySelectorAll('.slide');
-const indicatorsContainer = document.querySelector('#indicators-control');
+const indicatorsContainer = document.querySelector('#indicators-container');
 const indicators = document.querySelectorAll('.indicator');
 const pauseBtn = document.querySelector('#pause-btn');
 const prevBtn = document.querySelector('#prev-btn');
@@ -59,9 +59,14 @@ function indicate(e) {
   }
 }
 
+function pressKey (e) {
+if(e.code === 'ArrowLeft') prev();
+}
+
 pauseBtn.addEventListener('click', pausePlay);
 prevBtn.addEventListener('click', prev);
 nextBtn.addEventListener('click', next);
 indicatorsContainer.addEventListener('click',indicate);
+document.addEventListener('keydown', pressKey);
 
 timerID = setInterval(gotoNext, interval);
