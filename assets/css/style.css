@@ -63,12 +63,14 @@ body {
   background: purple;
 }
 
+.indicators,
 .controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 1em;
   padding: 1em;
+  float: left;
 }
 
 .control {
@@ -91,4 +93,18 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.indicator {
+  width: 40px;
+  height: 40px;
+  background-color: lightslategray;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.indicator.active {
+  background-color: red;
 }
