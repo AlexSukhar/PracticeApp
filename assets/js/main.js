@@ -13,6 +13,7 @@ let timerID = null;
 let interval = 2000;
 
 function gotoNth(n) {
+  console.log(n);
   slides[currentSlide].classList.toggle('active');
   indicators[currentSlide].classList.toggle('active');
   currentSlide = (n + slidesCount) % slidesCount;
@@ -41,18 +42,19 @@ function play() {
 const pausePlay = () => isPlaying ? pause() : play();
 
 function prev() {
-  gotoPrev();
   pause();
+  gotoPrev();
 }
 function next() {
-  gotoNext();
   pause();
+  gotoNext();
 }
 
 function indicate(e) {
   const target = e.target;
+
   if (target && target.classList.contains('indicator')) {
-    pause();
+  pause();
   gotoNth(+target.dataset.slideTo);
   }
 }
@@ -60,6 +62,6 @@ function indicate(e) {
 pauseBtn.addEventListener('click', pausePlay);
 prevBtn.addEventListener('click', prev);
 nextBtn.addEventListener('click', next);
-indicatorsContainer.addEventListener('click', indicate);
+indicatorsContainer.addEventListener('click',indicate);
 
 timerID = setInterval(gotoNext, interval);
