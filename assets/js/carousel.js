@@ -1,10 +1,30 @@
 class Carousel {
-  constructor(settings) {
+  constructor(params) {
+    const settings = this._initConfig(params);
+
     this.container = document.querySelector(settings.containerID);
     this.slides = this.container.querySelectorAll(settings.slideID);
     this.isPlaying = settings.isPlaying;
     this.interval = settings.interval;
   }
+
+  _initConfig(objectParams) {
+
+  //   const defaultSettings = {
+  //     interval: 1000,
+  //     containerID: '#carousel',
+  //     slideID: '.item',
+  //     isPlaying: true,
+  //   };
+  //   if (typeof objectParams !== undefined) {
+  //     defaultSettings.interval = objectParams.interval || defaultSettings.interval;
+  //     defaultSettings.containerID = objectParams.containerID || defaultSettings.containerID;
+  //     defaultSettings.slideID = objectParams.slideID || defaultSettings.slideID;
+  //     defaultSettings.isPlaying = objectParams.isPlaying || defaultSettings.isPlaying;
+  //   }
+  //   return defaultSettings;
+  }
+
   _initProps() {
     this.SLIDES_COUNT = this.slides.length;
     this.CODE_LEFT_ARROW = "ArrowLeft";
@@ -16,9 +36,6 @@ class Carousel {
     this.currentSlide = 0;
 
   }
-
-
-
   _initControls() {
     const controls = document.createElement('div');
     const PAUSE = '<span id="pause-btn" class="control"><i class="far fa-pause-circle"></i></span>'
